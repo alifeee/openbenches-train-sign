@@ -61,3 +61,38 @@ This is code to flash an ESP8266, in [`./fetcher/`](./fetcher/).
 To program the ESP, use [Platform IO for VSCode](https://docs.platformio.org/en/latest/integration/ide/vscode.html) or another method. To use PlatformIO, you must use VSCode.
 
 Copy the example secrets file ([`./fetcher/src/secrets.example.h`](./fetcher/src/secrets.example.h)) and enter your Wi-Fi details, and the URL of the file to fetch (i.e., <http://server.alifeee.co.uk/bench>).
+
+## Controller
+
+This is code to flash an Arduino Uno, in [`./controller/`](./controller/).
+
+This will need to be code to listen for SPI messages, and control the [train sign].
+
+Example code is in the [train sign] repository, for example to write the text we probably want something similar to
+
+```c
+//...
+#include <Adafruit_I2CDevice.h>
+#include <Adafruit_GFX.h>
+#include <BigClock.h>
+GFXcanvas1 *canvas = NULL;
+BigClock *bc = NULL;
+//...
+void setup()
+{
+  canvas = new GFXcanvas1(96, 26);
+  bc = new BigClock();
+  bc->init();
+}
+//...
+void loop()
+{
+  canvas->fillScreen(0);
+  canvas->setCursor(0, 0);
+  canvas->print("This is some text. It should wrap automatically :)");
+
+  uint8_t *buffer = canvas->getBuffer();
+
+  bc->output(buffer);
+}
+```
