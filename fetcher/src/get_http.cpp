@@ -4,10 +4,11 @@
  * @brief Fetches text from an HTTP endpoint and sends it over SPI
  * @version 0.1
  * @date 2024-04-17
- * 
+ *
  * @copyright Use freely
  */
 #include <Arduino.h>
+#include <SPI.h>
 
 #include <ESP8266WiFiMulti.h>
 ESP8266WiFiMulti wifiMulti;
@@ -25,6 +26,9 @@ void setup()
     {
         delay(100);
     }
+
+    // SETUP SPI
+    SPI.begin();
 
     // SETUP wifi
     WiFi.mode(WIFI_STA);
@@ -66,6 +70,16 @@ void loop()
             Serial.println(httpCode);
             String payload = http.getString();
             Serial.println(payload);
+
+            // send over SPI
+            SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE0));
+            char c;
+            for (const char *p = payload.c_str(); c = *p; p++)
+            {
+                SPI.transfer(c);
+            }
+            // send message terminator? or it might be in the payload above
+            SPI.endTransaction();
         }
         else
         {
