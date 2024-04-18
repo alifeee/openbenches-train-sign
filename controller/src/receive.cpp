@@ -50,8 +50,10 @@ void loop()
 
 void draw(String m)
 {
+    // https://learn.adafruit.com/adafruit-gfx-graphics-library/graphics-primitives#characters-and-text-2002798
     canvas->fillScreen(0);
     canvas->setCursor(0, 0);
+    canvas->setTextSize(1);
     canvas->print(m);
 
     uint8_t *buffer = canvas->getBuffer();
