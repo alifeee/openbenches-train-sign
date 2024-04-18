@@ -8,10 +8,13 @@
  * @copyright Use freely
  */
 #include <Arduino.h>
-#include <SPI.h>
 
 #include <ESP8266WiFiMulti.h>
 ESP8266WiFiMulti wifiMulti;
+
+// serial
+#include <SoftwareSerial.h>
+SoftwareSerial link(3, 1); // Rx, Tx
 
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
@@ -27,13 +30,14 @@ void setup()
         delay(100);
     }
 
-    // SETUP SPI
-    SPI.begin();
+    // SETUP INTRA-DEVICE SERIAL
+    link.begin(9600);
+    pinMode(3, INPUT);
+    pinMode(1, OUTPUT);
 
     // SETUP wifi
     WiFi.mode(WIFI_STA);
     wifiMulti.addAP(WIFI_SSID, WIFI_PASSWORD);
-    wifiMulti.addAP(WIFI_SSID_2, WIFI_PASSWORD_2);
     Serial.print("Connecting to wifi");
     while (wifiMulti.run() != WL_CONNECTED)
     {
@@ -72,15 +76,8 @@ void loop()
             String payload = http.getString();
             Serial.println(payload);
 
-            // send over SPI
-            SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE0));
-            char c;
-            for (const char *p = payload.c_str(); c = *p; p++)
-            {
-                SPI.transfer(c);
-            }
-            // send message terminator? or it might be in the payload above
-            SPI.endTransaction();
+            // send over Serial
+            link.print(payload);
         }
         else
         {

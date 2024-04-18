@@ -18,7 +18,8 @@ void setup()
 void loop()
 {
     f = String("In loving memory of DR. DHIRENDRA M. GOSALIA Who devoted his life to caring for the poor of Mumbai, India. 26/11/1941-25/2/2016");
+    // f = String("In loving memory");
     link.println(f);
 
-    delay(2000);
+    delay(5000);
 }
