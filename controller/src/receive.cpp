@@ -40,6 +40,8 @@ void loop()
         message.concat(character);
         if (character == '\n')
         {
+            Serial.println("got message");
+            Serial.println(message);
             draw(message);
             message = "";
         }
