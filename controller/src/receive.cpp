@@ -32,25 +32,14 @@ void setup()
 
 void loop()
 {
-    // String content = "";
     char character;
 
     while (link.available())
     {
         character = link.read();
         message.concat(character);
-    }
-
-    const char *forward = message.c_str();
-    int length = 0;
-    while (*(forward++) != '\0')
-    {
-        char c = forward[length];
-        length++;
-        if (c == '\n')
+        if (character == '\n')
         {
-            Serial.println("new message found!");
-            Serial.println(message);
             draw(message);
             message = "";
         }
