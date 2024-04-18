@@ -3,6 +3,8 @@
 #include <SoftwareSerial.h>
 SoftwareSerial link(3, 5); // Rx, Tx
 
+String message;
+
 void setup()
 {
     link.begin(9600);     // setup software serial
@@ -17,17 +19,26 @@ void setup()
 
 void loop()
 {
-    String content = "";
+    // String content = "";
     char character;
 
     while (link.available())
     {
         character = link.read();
-        content.concat(character);
+        message.concat(character);
     }
 
-    if (content != "")
+    const char *forward = message.c_str();
+    int length = 0;
+    while (*(forward++) != '\0')
     {
-        Serial.print(content);
+        char c = forward[length];
+        length++;
+        if (c == '\n')
+        {
+            Serial.println("new message found!");
+            Serial.println(message);
+            message = "";
+        }
     }
 }
