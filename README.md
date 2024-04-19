@@ -1,6 +1,8 @@
 # OpenBenches Train Sign
 
-Attempt to display the most recent bench from <https://openbenches.org/> on a [train sign].
+Displaying the most recent bench from <https://openbenches.org/> on a [train sign].
+
+![Picture of a train sign with few pixels, showing in large writing "In loving memory of DR. DHIRENDRA M. GOSALIA Who...". The rest is cut off](./images/train-sign.jpg)
 
 There are three parts
 
@@ -67,3 +69,5 @@ Copy the example secrets file ([`./fetcher/src/secrets.example.h`](./fetcher/src
 This is code to flash an Arduino Uno, in [`./controller/`](./controller/).
 
 It uses Serial communication to listen for messages, which are then displayed on the train sign.
+
+For more information on this see the [train sign] repository.
