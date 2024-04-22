@@ -1,6 +1,6 @@
 # OpenBenches Train Sign
 
-Displaying the most recent bench from <https://openbenches.org/> on a [train sign].
+Displaying the most recent bench from <https://openbenches.org/> on a 96ⅹ26 [train sign].
 
 ![Picture of a train sign with few pixels, showing in large writing "In loving memory of DR. DHIRENDRA M. GOSALIA Who...". The rest is cut off](./images/train-sign.jpg)
 
