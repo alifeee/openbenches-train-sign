@@ -1,6 +1,8 @@
 # OpenBenches Train Sign
 
-Attempt to display the most recent bench from <https://openbenches.org/> on a [train sign].
+Displaying the most recent bench from <https://openbenches.org/> on a 96ⅹ26 [train sign].
+
+![Picture of a train sign with few pixels, showing in large writing "In loving memory of DR. DHIRENDRA M. GOSALIA Who...". The rest is cut off](./images/train-sign.jpg)
 
 There are three parts
 
@@ -66,33 +68,6 @@ Copy the example secrets file ([`./fetcher/src/secrets.example.h`](./fetcher/src
 
 This is code to flash an Arduino Uno, in [`./controller/`](./controller/).
 
-This will need to be code to listen for SPI messages, and control the [train sign].
+It uses Serial communication to listen for messages, which are then displayed on the train sign.
 
-Example code is in the [train sign] repository, for example to write the text we probably want something similar to
-
-```c
-//...
-#include <Adafruit_I2CDevice.h>
-#include <Adafruit_GFX.h>
-#include <BigClock.h>
-GFXcanvas1 *canvas = NULL;
-BigClock *bc = NULL;
-//...
-void setup()
-{
-  canvas = new GFXcanvas1(96, 26);
-  bc = new BigClock();
-  bc->init();
-}
-//...
-void loop()
-{
-  canvas->fillScreen(0);
-  canvas->setCursor(0, 0);
-  canvas->print("This is some text. It should wrap automatically :)");
-
-  uint8_t *buffer = canvas->getBuffer();
-
-  bc->output(buffer);
-}
-```
+For more information on this see the [train sign] repository.

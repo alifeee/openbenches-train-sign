@@ -9,3 +9,48 @@ in the development cycle.
 
 More information about PlatformIO Unit Testing:
 - https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+
+## How to Install
+
+Make sure `gcc` is installed (run `gcc --version`).
+
+Install relevant local platform for local tests `PIO Home > Platforms > Windows x86 > Install v1.2.0`.
+
+Add to platformio.ini file
+
+```ini
+[env:windows_x86]
+platform = windows_x86
+```
+
+Add test file, e.g.,
+
+```cpp
+#include <unity.h>
+void setUp(void){
+    // set stuff up here
+}
+
+void tearDown(void){
+    // clean stuff up here
+}
+
+void test_true_is_true(){
+    bool a = true;
+    TEST_ASSERT_TRUE(a);
+}
+
+int main(int argc, char **argv){
+    UNITY_BEGIN();
+    RUN_TEST(test_true_is_true);
+    UNITY_END();
+}
+```
+
+Run tests with
+
+`PlatformIO > Project Tasks > windows_x86 > Advanced > Test`
+
+or
+
+`pio test --environment windows_x86`
