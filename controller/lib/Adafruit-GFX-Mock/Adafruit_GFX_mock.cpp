@@ -68,6 +68,17 @@ void Adafruit_GFX::setTextSize(uint8_t s_x, uint8_t s_y)
     textsize_y = (s_y > 0) ? s_y : 1;
 }
 
+void Adafruit_GFX::fillRect(int16_t x, int16_t y, int16_t w, int16_t h,
+                            uint16_t color)
+{
+    startWrite();
+    for (int16_t i = x; i < x + w; i++)
+    {
+        writeFastVLine(i, y, h, color);
+    }
+    endWrite();
+}
+
 void Adafruit_GFX::setFont(const GFXfont *f)
 {
     if (f)
@@ -145,8 +156,7 @@ void GFXcanvas1::fillScreen(uint16_t color)
     }
 }
 
-void GFXcanvas1::drawFastVLine(int16_t x, int16_t y, int16_t h,
-                               uint16_t color)
+void GFXcanvas1::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
 {
 
     if (h < 0)
