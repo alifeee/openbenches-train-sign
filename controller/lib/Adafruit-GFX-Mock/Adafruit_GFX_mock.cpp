@@ -10,6 +10,29 @@ inline uint8_t *pgm_read_bitmap_ptr(const GFXfont *gfxFont)
     return gfxFont->bitmap;
 }
 
+size_t Print::write(const uint8_t *buffer, size_t size)
+{
+    size_t n = 0;
+    while (size--)
+    {
+        if (write(*buffer++))
+            n++;
+        else
+            break;
+    }
+    return n;
+}
+
+size_t Print::print(const char str[])
+{
+    return write(str);
+}
+
+size_t Print::print(char c)
+{
+    return write(c);
+}
+
 Adafruit_GFX::Adafruit_GFX(int16_t w, int16_t h) : WIDTH(w), HEIGHT(h)
 {
     _width = WIDTH;
