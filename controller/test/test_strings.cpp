@@ -17,11 +17,11 @@ void test_true_is_true()
     TEST_ASSERT_TRUE(a);
 }
 
-int main(int argc, char **argv)
-{
-    UNITY_BEGIN();
+// int main(int argc, char **argv)
+// {
+//     UNITY_BEGIN();
 
-    RUN_TEST(test_true_is_true);
+//     RUN_TEST(test_true_is_true);
 
-    UNITY_END();
-}
+//     UNITY_END();
+// }

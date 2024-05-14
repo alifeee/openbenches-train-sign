@@ -7,6 +7,8 @@ SoftwareSerial link(3, 5); // Rx, Tx
 #include <Adafruit_GFX.h>
 #include <BigClock.h>
 
+#include <graphics.cpp>
+
 GFXcanvas1 *canvas = NULL;
 BigClock *bc = NULL;
 
