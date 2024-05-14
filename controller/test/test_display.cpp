@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         for (x = 0; x <= xlim; x++)
         {
             if (canvas->getPixel(x, y))
-                printf("##");
+                printf("# ");
             else
                 printf("  ");
         }
