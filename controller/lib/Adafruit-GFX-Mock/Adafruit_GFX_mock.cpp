@@ -357,30 +357,30 @@ size_t Adafruit_GFX::write(uint8_t c)
         {
             cursor_x = 0;
             cursor_y +=
-                (int16_t)textsize_y * (uint8_t)pgm_read_byte(&gfxFont->yAdvance);
+                (int16_t)textsize_y * (uint8_t)gfxFont->yAdvance;
         }
         else if (c != '\r')
         {
-            uint8_t first = pgm_read_byte(&gfxFont->first);
-            if ((c >= first) && (c <= (uint8_t)pgm_read_byte(&gfxFont->last)))
+            uint8_t first = gfxFont->first;
+            if ((c >= first) && (c <= (uint8_t)gfxFont->last))
             {
                 GFXglyph *glyph = pgm_read_glyph_ptr(gfxFont, c - first);
-                uint8_t w = pgm_read_byte(&glyph->width),
-                        h = pgm_read_byte(&glyph->height);
+                uint8_t w = glyph->width,
+                        h = glyph->height;
                 if ((w > 0) && (h > 0))
-                {                                                        // Is there an associated bitmap?
-                    int16_t xo = (int8_t)pgm_read_byte(&glyph->xOffset); // sic
+                {                                        // Is there an associated bitmap?
+                    int16_t xo = (int8_t)glyph->xOffset; // sic
                     if (wrap && ((cursor_x + textsize_x * (xo + w)) > _width))
                     {
                         cursor_x = 0;
                         cursor_y += (int16_t)textsize_y *
-                                    (uint8_t)pgm_read_byte(&gfxFont->yAdvance);
+                                    (uint8_t)gfxFont->yAdvance;
                     }
                     drawChar(cursor_x, cursor_y, c, textcolor, textbgcolor, textsize_x,
                              textsize_y);
                 }
                 cursor_x +=
-                    (uint8_t)pgm_read_byte(&glyph->xAdvance) * (int16_t)textsize_x;
+                    (uint8_t)glyph->xAdvance * (int16_t)textsize_x;
             }
         }
     }
@@ -409,7 +409,7 @@ void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t colo
         startWrite();
         for (int8_t i = 0; i < 5; i++)
         { // Char bitmap = 5 columns
-            uint8_t line = pgm_read_byte(&font[c * 5 + i]);
+            uint8_t line = font[c * 5 + i];
             for (int8_t j = 0; j < 8; j++, line >>= 1)
             {
                 if (line & 1)
@@ -445,14 +445,14 @@ void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t colo
         // newlines, returns, non-printable characters, etc.  Calling
         // drawChar() directly with 'bad' characters of font may cause mayhem!
 
-        c -= (uint8_t)pgm_read_byte(&gfxFont->first);
+        c -= (uint8_t)gfxFont->first;
         GFXglyph *glyph = pgm_read_glyph_ptr(gfxFont, c);
         uint8_t *bitmap = pgm_read_bitmap_ptr(gfxFont);
 
-        uint16_t bo = pgm_read_word(&glyph->bitmapOffset);
-        uint8_t w = pgm_read_byte(&glyph->width), h = pgm_read_byte(&glyph->height);
-        int8_t xo = pgm_read_byte(&glyph->xOffset),
-               yo = pgm_read_byte(&glyph->yOffset);
+        uint16_t bo = glyph->bitmapOffset;
+        uint8_t w = glyph->width, h = glyph->height;
+        int8_t xo = glyph->xOffset,
+               yo = glyph->yOffset;
         uint8_t xx, yy, bits = 0, bit = 0;
         int16_t xo16 = 0, yo16 = 0;
 
@@ -487,7 +487,7 @@ void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t colo
             {
                 if (!(bit++ & 7))
                 {
-                    bits = pgm_read_byte(&bitmap[bo++]);
+                    bits = bitmap[bo++];
                 }
                 if (bits & 0x80)
                 {
