@@ -24,11 +24,12 @@ GFXcanvas1 *canvas = NULL;
 int main(int argc, char **argv)
 {
     canvas = new GFXcanvas1(xlim, ylim);
-    doGraphics(canvas);
+    // doGraphics(canvas);
+    drawText(canvas, "THE CHESHIRE REGIMENT ASSOCIATION  THIS MEMORIAL WAS PLACED HERE BY THE CHESHIRE REGIMENT ASSOCIATION & COMRADES SANDBACH & MIDDLEWICH BRANCH TO HONOUR THOSE WHO GAVE THEIR LIVES IN CONFLICTS IN THE LAST CENTURY 1900 - 2000");
 
     // uint8_t *buffer = canvas->getBuffer();
 
-    cout << "Hello\n";
+    cout << "Bench sign...\n\n";
 
     int x;
     int y;
@@ -38,9 +39,9 @@ int main(int argc, char **argv)
         for (x = 0; x <= xlim; x++)
         {
             if (canvas->getPixel(x, y))
-                printf("#");
+                printf("##");
             else
-                printf(" ");
+                printf("  ");
         }
         printf("\n");
     }

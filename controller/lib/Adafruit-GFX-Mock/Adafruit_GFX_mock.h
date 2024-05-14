@@ -94,7 +94,7 @@ public:
     // virtual void invertDisplay(bool i);
 
     // BASIC DRAW API
-    virtual void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+    // virtual void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
     // virtual void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
     virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
     // virtual void fillScreen(uint16_t color);
@@ -180,7 +180,7 @@ public:
     ~GFXcanvas1(void);
     void drawPixel(int16_t x, int16_t y, uint16_t color);
     void fillScreen(uint16_t color);
-    void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+    // void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
     // void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
     bool getPixel(int16_t x, int16_t y) const;
     uint8_t *getBuffer(void) const { return buffer; }

@@ -57,7 +57,7 @@ void Adafruit_GFX::writeFillRect(int16_t x, int16_t y, int16_t w, int16_t h, uin
 }
 void Adafruit_GFX::writeFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
 {
-    drawFastVLine(x, y, h, color);
+    // drawFastVLine(x, y, h, color);
 }
 void Adafruit_GFX::endWrite() {}
 
@@ -156,64 +156,64 @@ void GFXcanvas1::fillScreen(uint16_t color)
     }
 }
 
-void GFXcanvas1::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
-{
+// void GFXcanvas1::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
+// {
 
-    if (h < 0)
-    { // Convert negative heights to positive equivalent
-        h *= -1;
-        y -= h - 1;
-        if (y < 0)
-        {
-            h += y;
-            y = 0;
-        }
-    }
+//     if (h < 0)
+//     { // Convert negative heights to positive equivalent
+//         h *= -1;
+//         y -= h - 1;
+//         if (y < 0)
+//         {
+//             h += y;
+//             y = 0;
+//         }
+//     }
 
-    // Edge rejection (no-draw if totally off canvas)
-    if ((x < 0) || (x >= width()) || (y >= height()) || ((y + h - 1) < 0))
-    {
-        return;
-    }
+//     // Edge rejection (no-draw if totally off canvas)
+//     if ((x < 0) || (x >= width()) || (y >= height()) || ((y + h - 1) < 0))
+//     {
+//         return;
+//     }
 
-    if (y < 0)
-    { // Clip top
-        h += y;
-        y = 0;
-    }
-    if (y + h > height())
-    { // Clip bottom
-        h = height() - y;
-    }
+//     if (y < 0)
+//     { // Clip top
+//         h += y;
+//         y = 0;
+//     }
+//     if (y + h > height())
+//     { // Clip bottom
+//         h = height() - y;
+//     }
 
-    if (getRotation() == 0)
-    {
-        drawFastRawVLine(x, y, h, color);
-    }
-    else if (getRotation() == 1)
-    {
-        int16_t t = x;
-        x = WIDTH - 1 - y;
-        y = t;
-        x -= h - 1;
-        drawFastRawHLine(x, y, h, color);
-    }
-    else if (getRotation() == 2)
-    {
-        x = WIDTH - 1 - x;
-        y = HEIGHT - 1 - y;
+//     if (getRotation() == 0)
+//     {
+//         drawFastRawVLine(x, y, h, color);
+//     }
+//     else if (getRotation() == 1)
+//     {
+//         int16_t t = x;
+//         x = WIDTH - 1 - y;
+//         y = t;
+//         x -= h - 1;
+//         drawFastRawHLine(x, y, h, color);
+//     }
+//     else if (getRotation() == 2)
+//     {
+//         x = WIDTH - 1 - x;
+//         y = HEIGHT - 1 - y;
 
-        y -= h - 1;
-        drawFastRawVLine(x, y, h, color);
-    }
-    else if (getRotation() == 3)
-    {
-        int16_t t = x;
-        x = y;
-        y = HEIGHT - 1 - t;
-        drawFastRawHLine(x, y, h, color);
-    }
-}
+//         y -= h - 1;
+//         drawFastRawVLine(x, y, h, color);
+//     }
+//     else if (getRotation() == 3)
+//     {
+//         int16_t t = x;
+//         x = y;
+//         y = HEIGHT - 1 - t;
+//         drawFastRawHLine(x, y, h, color);
+//     }
+// }
 void GFXcanvas1::drawFastRawVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
 {
     // x & y already in raw (rotation 0) coordinates, no need to transform.

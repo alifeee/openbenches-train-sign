@@ -12,3 +12,10 @@ void doGraphics(GFXcanvas1 *canvas)
     canvas->setTextSize(1);
     canvas->print("hi :0");
 }
+
+void drawText(GFXcanvas1 *canvas, char *text)
+{
+    canvas->setCursor(0, 0);
+    canvas->setTextSize(1);
+    canvas->print(text);
+}
