@@ -1,3 +1,7 @@
+/**
+ * run pio test --environment windows_x86 -vvv
+ */
+
 // #include <Adafruit_GFX_mock.h>
 #include <graphics.cpp>
 #include <iostream>
