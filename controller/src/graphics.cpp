@@ -4,14 +4,18 @@
 #include <Adafruit_GFX.h>
 #endif
 
-// #include <Fonts/FreeSans9pt7b.h>
 #include <Fonts/TomThumb.h>
+#define FONT_HEIGHT 5
+// #include <Fonts/Picopixel.h>
+// #define FONT_HEIGHT 6
+// #include <Fonts/Tiny3x3a2pt7b.h>
+// #define FONT_HEIGHT 3
 
 void doGraphics(GFXcanvas1 *canvas)
 {
     canvas->drawPixel(2, 2, 1);
 
-    canvas->setFont(&TomThumb);
+    // canvas->setFont(&TomThumb);
     canvas->setTextSize(1);
     canvas->setCursor(5, 5);
     canvas->setTextSize(1);
@@ -20,7 +24,8 @@ void doGraphics(GFXcanvas1 *canvas)
 
 void drawText(GFXcanvas1 *canvas, char *text)
 {
-    canvas->setCursor(0, 0);
+    canvas->setFont(&TomThumb);
+    canvas->setCursor(0, FONT_HEIGHT);
     canvas->setTextSize(1);
     canvas->print(text);
 }
