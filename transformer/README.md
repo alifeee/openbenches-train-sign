@@ -15,6 +15,12 @@ sudo apt-get update
 sudo apt-get install xmlstarlet
 ```
 
+Or, move files with `scp`
+
+```bash
+scp ./transformer/* server:/var/www/cgi/bench
+```
+
 You can test them locally by running them as executable files. You can first see the headers which will be sent, and the body after a newline.
 
 ```bash
