@@ -22,7 +22,7 @@ void doGraphics(GFXcanvas1 *canvas)
     canvas->print("hi :0");
 }
 
-void drawText(GFXcanvas1 *canvas, char *text)
+void drawText(GFXcanvas1 *canvas, const char *text)
 {
     canvas->setFont(&TomThumb);
     canvas->setCursor(0, FONT_HEIGHT);
