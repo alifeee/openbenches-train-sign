@@ -13,5 +13,6 @@ echo "Last-Modified: " $(echo $feed | pcregrep -o1 '<pubDate>(.*?)</pubDate>' | 
 echo ""
 
 echo $feed | tr "\\n" " " | tr -d $'\r' | xmlstarlet sel -T -t -v '(/rss/channel/item/description)['"${historical}"']' /dev/stdin | sed 's/<br><img src.*//g' | perl -n -mHTML::Entities -e ' ; print HTML::Entities::decode_entities($_) ;' | sed 's/^\s*//' | sed 's/\s*$//'
+echo ""
 
 exit 0
