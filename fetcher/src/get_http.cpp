@@ -14,7 +14,9 @@ ESP8266WiFiMulti wifiMulti;
 
 // serial
 #include <SoftwareSerial.h>
-SoftwareSerial link(3, 1); // Rx, Tx
+#define RX 4
+#define TX 5
+SoftwareSerial link(RX, TX); // Rx, Tx
 
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
@@ -24,16 +26,17 @@ SoftwareSerial link(3, 1); // Rx, Tx
 void setup()
 {
     // SETUP SERIAL
-    Serial.begin(115200);
+    Serial.begin(9600);
     while (!Serial)
     {
         delay(100);
     }
+    Serial.print("Set up!");
 
     // SETUP INTRA-DEVICE SERIAL
     link.begin(9600);
-    pinMode(3, INPUT);
-    pinMode(1, OUTPUT);
+    pinMode(RX, INPUT);
+    pinMode(TX, OUTPUT);
 
     // SETUP wifi
     WiFi.mode(WIFI_STA);
