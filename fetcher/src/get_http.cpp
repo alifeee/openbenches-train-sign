@@ -81,6 +81,7 @@ void loop()
 
             // send over Serial
             link.print(payload);
+            link.print('\0');
         }
         else
         {

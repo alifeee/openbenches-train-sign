@@ -40,7 +40,7 @@ void loop()
     {
         character = link.read();
         message.concat(character);
-        if (character == '\n')
+        if (character == '\0')
         {
             Serial.println("got message");
             Serial.println(message);
