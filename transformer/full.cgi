@@ -1,4 +1,14 @@
 #!/bin/bash
+# get the most recent bench inscription from
+#  https://openbenches.org/feed
+#  with all new lines
+# requires xmlstarlet, install with
+#  apt-get install xmlstarlet
+# run as script:
+#  ./full.cgi
+#  QUERY_STRING="n=3" ./full.cgi
+# run as CGI script with nginx
+#  > must edit NGINX config... see README...
 
 feed=$(curl -s https://openbenches.org/feed)
 
