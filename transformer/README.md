@@ -6,20 +6,22 @@ For this project, I only want "the inscription of the most recent bench". OpenBe
 
 The CGI scripts in this folder parse the RSS feed and returns an HTTP request with the text of the most recently uploaded bench. They also include a `Last-Modified` header using the RSS `pubDate`. It gets the description from the RSS `description`, and returns it, with newlines replaced with space `" "`, HTML entities decoded (i.e., `&#039;` `&amp;` `&quot;` → `'` `&` `"`), and whitespace trimmed.
 
+## Install
+
 This CGI script can be placed on an HTTP server by using nginx with `fastcgi`. First, place the files and install `xmlstarlet`.
 
 ```bash
-mkdir -p /var/www/cgi/bench/
-cp ./transformer/* /var/www/cgi/bench/
 sudo apt-get update
 sudo apt-get install xmlstarlet
+
+mkdir -p /usr/alifeee
+git clone git@github.com:alifeee/openbenches-train-sign.git /usr/alifeee/openbenches-train-sign
+
+mkdir -p /var/www/cgi/
+ln -s /usr/alifeee/openbenches-train-sign/transformer/ /var/www/cgi/bench
 ```
 
-Or, move files with `scp`
-
-```bash
-scp ./transformer/* server:/var/www/cgi/bench
-```
+## Test
 
 You can test them locally by running them as executable files. You can first see the headers which will be sent, and the body after a newline.
 
@@ -34,6 +36,18 @@ Doreen McKenzie
 A local resident for 58 years
 she loved this park.
 ```
+
+## Cache
+
+The scripts save the feed to a cache, and update it if the cache is older than the feed's [TTL](https://www.rssboard.org/rss-specification).
+
+To test the cache, you can manually set the age of it to "old" using `touch`. For example, something like
+
+```bash
+touch -d "2 hours ago" feed.cache
+```
+
+## Connect to web
 
 Here is an example nginx config. When debugging, running `sudo strace -f -e trace=file -p $(pidof fcgiwrap)` will display all attempts to do things by `fastcgi`, which is very helpful.
 
