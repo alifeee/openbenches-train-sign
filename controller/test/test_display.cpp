@@ -25,7 +25,11 @@ int main(int argc, char **argv)
 {
     canvas = new GFXcanvas1(xlim, ylim);
     // doGraphics(canvas);
-    drawText(canvas, "THE CHESHIRE REGIMENT ASSOCIATION  THIS MEMORIAL WAS PLACED HERE BY THE CHESHIRE REGIMENT ASSOCIATION & COMRADES SANDBACH & MIDDLEWICH BRANCH TO HONOUR THOSE WHO GAVE THEIR LIVES IN CONFLICTS IN THE LAST CENTURY 1900 - 2000");
+    drawText(canvas, "In loving memory of\n"
+                     "Doreen McKenzie\n"
+                     "1928 - 2021\n"
+                     "A local resident for 58 years\n"
+                     "she loved this park.");
 
     // uint8_t *buffer = canvas->getBuffer();
 
