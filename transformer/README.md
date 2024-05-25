@@ -41,6 +41,12 @@ she loved this park.
 
 The scripts save the feed to a cache, and update it if the cache is older than the feed's [TTL](https://www.rssboard.org/rss-specification).
 
+To test the cache, you can manually set the age of it to "old" using `touch`. For example, something like
+
+```bash
+touch -d "2 hours ago" feed.cache
+```
+
 ## Connect to web
 
 Here is an example nginx config. When debugging, running `sudo strace -f -e trace=file -p $(pidof fcgiwrap)` will display all attempts to do things by `fastcgi`, which is very helpful.
