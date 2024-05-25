@@ -9,16 +9,14 @@ The CGI scripts in this folder parse the RSS feed and returns an HTTP request wi
 This CGI script can be placed on an HTTP server by using nginx with `fastcgi`. First, place the files and install `xmlstarlet`.
 
 ```bash
-mkdir -p /var/www/cgi/bench/
-cp ./transformer/* /var/www/cgi/bench/
 sudo apt-get update
 sudo apt-get install xmlstarlet
-```
 
-Or, move files with `scp`
+mkdir -p /usr/alifeee
+git clone git@github.com:alifeee/openbenches-train-sign.git /usr/alifeee/openbenches-train-sign
 
-```bash
-scp ./transformer/* server:/var/www/cgi/bench
+mkdir -p /var/www/cgi/
+ln -s /usr/alifeee/openbenches-train-sign/transformer/ /var/www/cgi/bench
 ```
 
 You can test them locally by running them as executable files. You can first see the headers which will be sent, and the body after a newline.
