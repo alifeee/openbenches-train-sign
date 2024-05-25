@@ -27,5 +27,6 @@ void drawText(GFXcanvas1 *canvas, const char *text)
     canvas->setFont(&TomThumb);
     canvas->setCursor(0, FONT_HEIGHT);
     canvas->setTextSize(1);
+    canvas->setTextWrap(false);
     canvas->print(text);
 }
