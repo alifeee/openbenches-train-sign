@@ -15,46 +15,10 @@ There are three parts
 
 ## Transformer
 
-For this project, I only want "the inscription of the most recent bench". OpenBenches provides [a geoJSON API][OpenBenches API], but I can't see a way to limit this to "most recent 1/5/10 benches" (see [GitHub issue](https://github.com/openbenches/openbenches.org/issues/364)), so I use the [RSS feed][OpenBenches RSS Feed].
+These are a few CGI scripts in [`./transformer/](./transformer/), which I host on a server, currently at these endpoints:
 
-This bash CGI script parses the RSS feed and returns an HTTP request with the text of the most recently uploaded bench. It also includes the `Last-Modified` header using the RSS `pubDate`. It gets the description from the RSS `description`, and returns it, with newlines replaced with space `" "`, HTML entities decoded (i.e., `&#039;` `&amp;` `&quot;` → `'` `&` `"`), and whitespace trimmed.
-
-```bash
-#!/bin/bash
-
-feed=$(curl -s https://openbenches.org/feed)
-
-echo "Content-type: text/plain"
-echo "Last-Modified: " $(echo $feed | pcregrep -o1 '<pubDate>(.*?)</pubDate>' | head -n1)
-echo ""
-
-echo $feed | tr "\\n" " " | tr -d $'\r' | pcregrep -Mo1 '<description><!\[CDATA\[((\n|.)*?)<br>(\n|.)*?</description>' | perl -n -mHTML::Entities -e ' ; print HTML::Entities::decode_entities($_) ;' | sed 's/^\s*//' | sed 's/\s*$//' | head -n1
-
-exit 0
-```
-
-This CGI script can be placed on an HTTP server by using this nginx config. When debugging `SCRIPT_FILENAME`, running `sudo strace -f -e trace=file -p $(pidof fcgiwrap)` will display all attempts to do things by `fastcgi`, which is very helpful.
-
-```nginx
-server {
-    ...
-    location /bench {
-        fastcgi_intercept_errors on;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME /var/www/localhost/bench.cgi;
-        fastcgi_pass unix:/var/run/fcgiwrap.socket;
-    }
-    ...
-}
-```
-
-For example, I have placed it on <http://server.alifeee.co.uk/bench>
-
-```text
-IN MEMORY OF FRED KENYON 1927 TO 2012 Railwayman for over 40 years Love from all his Family
-```
-
-[OpenBenches API]: https://github.com/openbenches/openbenches.org?tab=readme-ov-file#open-data-api
+- <https://server.alifeee.co.uk/bench/line.cgi>
+- <https://server.alifeee.co.uk/bench/full.cgi>
 
 ## Fetcher
 
