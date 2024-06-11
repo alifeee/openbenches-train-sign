@@ -2,7 +2,7 @@
 
 Displaying the most recent bench from <https://openbenches.org/> on a 96ⅹ26 [train sign].
 
-![Picture of a train sign with few pixels, showing in large writing "In loving memory of DR. DHIRENDRA M. GOSALIA Who...". The rest is cut off](./images/train-sign.jpg)
+![Picture of a train sign, repeated several times. Each has a message on it which is from the memorial plaque of a bench](./images/train-sign.jpg)
 
 There are three parts
 
