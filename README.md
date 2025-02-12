@@ -17,8 +17,8 @@ There are three parts
 
 These are a few CGI scripts in [`./transformer/](./transformer/), which I host on a server, currently at these endpoints:
 
-- <https://server.alifeee.co.uk/bench/line.cgi>
-- <https://server.alifeee.co.uk/bench/full.cgi>
+- <https://server.alifeee.net/bench/line.cgi>
+- <https://server.alifeee.net/bench/full.cgi>
 
 ## Fetcher
 
