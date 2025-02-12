@@ -66,11 +66,11 @@ server {
 
 For example, I have placed them on:
 
-- <https://server.alifeee.co.uk/bench/line.cgi>
-- <https://server.alifeee.co.uk/bench/full.cgi>
+- <https://server.alifeee.net/bench/line.cgi>
+- <https://server.alifeee.net/bench/full.cgi>
 
 ```bash
-$ curl -s https://server.alifeee.co.uk/bench/full.cgi
+$ curl -s https://server.alifeee.net/bench/full.cgi
 In loving memory of
 Doreen McKenzie
 1928 - 2021

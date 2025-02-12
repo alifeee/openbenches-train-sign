@@ -17,8 +17,8 @@ There are three parts
 
 These are a few CGI scripts in [`./transformer/](./transformer/), which I host on a server, currently at these endpoints:
 
-- <https://server.alifeee.co.uk/bench/line.cgi>
-- <https://server.alifeee.co.uk/bench/full.cgi>
+- <https://server.alifeee.net/bench/line.cgi>
+- <https://server.alifeee.net/bench/full.cgi>
 
 ## Fetcher
 
@@ -26,7 +26,7 @@ This is code to flash an ESP8266, in [`./fetcher/`](./fetcher/).
 
 To program the ESP, use [Platform IO for VSCode](https://docs.platformio.org/en/latest/integration/ide/vscode.html) or another method. To use PlatformIO, you must use VSCode.
 
-Copy the example secrets file ([`./fetcher/src/secrets.example.h`](./fetcher/src/secrets.example.h)) and enter your Wi-Fi details, and the URL of the file to fetch (i.e., <http://server.alifeee.co.uk/bench>).
+Copy the example secrets file ([`./fetcher/src/secrets.example.h`](./fetcher/src/secrets.example.h)) and enter your Wi-Fi details, and the URL of the file to fetch (i.e., <http://server.alifeee.net/bench>).
 
 ## Controller
 
