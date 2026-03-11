@@ -1,3 +1,5 @@
+> [!CAUTION]
+> MOVED! see <https://git.alifeee.net/openbenches-train-sign/about/>
 # OpenBenches Train Sign
 
 Displaying the most recent bench from <https://openbenches.org/> on a 96ⅹ26 [train sign].
